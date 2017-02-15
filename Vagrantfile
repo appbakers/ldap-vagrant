@@ -4,9 +4,9 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu1404"
 
-  ldap_hostname = ENV[G_LDAP_HOSTNAME] ||= "ldap.vagrant.dev";
-  ldap_ip = ENV[G_LDAP_IP] ||= "192.168.33.253";
-  ldap_port = ENV[G_LDAP_PORT] ||= "100389";
+  ldap_hostname = ENV['G_LDAP_HOSTNAME'] ||= "ldap.vagrant.dev";
+  ldap_ip = ENV['G_LDAP_IP'] ||= "192.168.33.253";
+  ldap_port = ENV['G_LDAP_PORT'] ||= "100389";
   config.vm.hostname = ldap_hostname;
   config.vm.network "private_network", ip: ldap_ip;
 
