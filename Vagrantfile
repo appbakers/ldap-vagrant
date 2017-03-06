@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
 
   ldap_hostname = ENV['G_LDAP_HOSTNAME'] ||= "ldap.vagrant.dev";
   ldap_ip = ENV['G_LDAP_IP'] ||= "192.168.33.253";
-  ldap_port = ENV['G_LDAP_PORT'] ||= "100389";
+  ldap_port = ENV['G_LDAP_PORT'] ||= "13890";
   config.vm.hostname = ldap_hostname;
   config.vm.network "private_network", ip: ldap_ip;
 
@@ -31,7 +31,7 @@ else echo "Please check timezone info. ( currently only ubuntu is implemented.  
 echo `date`
 SCRIPTBLOCK
 
-  config.vm.network "forwarded_port", guest: 389, host: ldap_port;
+  config.vm.network "forwarded_port", guest: 389, host: ldap_port.to_i;
   config.vm.provision "shell", name:"scr_nix_preconfig", inline:$scr_nix_preconfig;
   config.vm.provision "shell", name:"scr_nix_tz_kst", inline:$scr_nix_tz_kst;
   config.vm.provision "shell", path: "provision.sh"
